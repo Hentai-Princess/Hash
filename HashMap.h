@@ -14,42 +14,43 @@ template <class Key, class Value>
 class HashMap
 {
 public:
-    /*  Конструктор инициализирует hash map */
+    //  Конструктор инициализирует hash map
     HashMap(int hashSze = HASH_SIZE);
-    /*   Проверка на пустоту  */
+    //   Проверка на пустоту
     bool IsEmpty(int keyIndex);
-    /*   Проверка на полноту  */
+    //   Проверка на полноту
     bool  IsFull();
-    /*   Генерирует и возвращает код элемента  */
+    //   Генерирует и возвращает код элемента
     int Hash(Key m_key);
-    /*   Добавление элемента m_value в таблицу  */
+    //   Добавление элемента m_value в таблицу
     void Insert(Key m_key, Value m_value);
-    /*   Удаление элемента deleteItem в таблицу  */
+    //   Удаление элемента deleteItem в таблицу
     bool Remove(Key m_key, Value deleteItem);
-    /*   Возвращает размер hash map     */
+    //   Возвращает размер hash map
     int TableSize();
-    /*   Возвращает общее количество элементов в hash map  */
+    //   Возвращает общее количество элементов в hash map
     int TotalElems();
-    /*   Возвращает количество элементов контейнера hash map  */
+    //   Возвращает количество элементов контейнера hash map
     int BucketSize(int keyIndex);
-    /*   Возвращает количество раз searchItem появляется в Hash map      */
+    //   Возвращает количество раз searchItem появляется в Hash map
     int Count(Key m_key, Value searchItem);
-    /*   Возвращает количество раз сколько повторяется ключ в Hash map  */
+    //   Возвращает количество раз сколько повторяется ключ в Hash map
     int ContainsKey(Key m_key);
-    /*   Проверяет Hash map на пустоту  */
+    //   Проверяет Hash map на пустоту
     void MakeEmpty();
-    /*   Удаляет Hash map  */
+    //   Удаляет Hash map
     ~HashMap();
     
     //  -- ITERATOR CLASS --
+    // Function: Class declaration to the iterator
     class Iterator;
-    /* Function: Class declaration to the iterator */
     
+    // Returns the beginning of the current hashmap key index
     Iterator begin(int keyIndex) { return(!IsEmpty(keyIndex)) ? head[keyIndex] : NULL; }
-    /* Returns the beginning of the current hashmap key index */
     
+    // Returns the end of the current hashmap key index
     Iterator end(int keyIndex = 0) { return NULL; }
-    /* Returns the end of the current hashmap key index */
+    
     
 private:
     struct KeyValue
@@ -69,7 +70,7 @@ private:
 };
 
 //=========================  Implementation  ================================//
-/*Инициализация таблицы*/
+//Инициализация таблицы
 template <class Key, class Value>
 HashMap<Key, Value>::HashMap(int hashSze)
 {
@@ -115,7 +116,7 @@ int HashMap<Key, Value>::Hash(Key m_key)
     long h = 19937;
     stringstream convert;
     
-    // конвертруем параметр в строку используя "stringstream"
+    // конвертируем параметр в строку используя "stringstream"
     // удобно использовать так как он подходит для любых типов данных
     convert << m_key;
     string temp = convert.str();
@@ -132,7 +133,7 @@ void HashMap<Key, Value>::Insert(Key m_key, Value m_value)
 {
     if (IsFull())
     {
-        //cout<<"INSERT ERROR - HASH MAP FULL";
+        cout<<"INSERT ERROR - HASH MAP FULL";
     }
     else
     {
@@ -169,7 +170,7 @@ bool HashMap<Key, Value>::Remove(Key m_key, Value deleteItem)
     
     if (IsEmpty(keyIndex))
     {
-        //cout<<"REMOVE ERROR - HASH MAP EMPTY";
+        cout<<"REMOVE ERROR - HASH MAP EMPTY";
     }
     else if (head[keyIndex]->currentItem.key == m_key
              && head[keyIndex]->currentItem.value == deleteItem)
@@ -227,7 +228,7 @@ int HashMap<Key, Value>::Count(Key m_key, Value searchItem)
     
     if (IsEmpty(keyIndex))
     {
-        //cout<<"COUNT ERROR - HASH MAP EMPTY";
+        cout<<"COUNT ERROR - HASH MAP EMPTY";
     }
     else
     {
@@ -251,7 +252,7 @@ int HashMap<Key, Value>::ContainsKey(Key m_key)
     
     if (IsEmpty(keyIndex))
     {
-        //cout<<"CONTAINS KEY ERROR - HASH MAP EMPTY";
+        cout<<"CONTAINS KEY ERROR - HASH MAP EMPTY";
     }
     else
     {
