@@ -14,17 +14,17 @@ int main()
     
     // Добавление элементов в таблицу
     hashMap.Insert("BIOL", 585);
-    hashMap.Insert("CPSC", 386);
+    hashMap.Insert("BIOL", 386);
     hashMap.Insert("ART", 101);
-    hashMap.Insert("CPSC", 462);
+    hashMap.Insert("BIOL", 462);
     hashMap.Insert("HIST", 251);
     hashMap.Insert("BIOL", 301);
     hashMap.Insert("MATH", 270);
     hashMap.Insert("PE", 145);
     hashMap.Insert("BIOL", 134);
     hashMap.Insert("GEOL", 201);
-    hashMap.Insert("CIS", 465);
-    hashMap.Insert("CPSC", 240);
+    hashMap.Insert("CS", 465);
+    hashMap.Insert("BIOL", 240);
     hashMap.Insert("GEOL", 101);
     hashMap.Insert("MATH", 150);
     hashMap.Insert("DANCE", 134);
@@ -32,37 +32,40 @@ int main()
     hashMap.Insert("ART", 345);
     hashMap.Insert("CHEM", 185);
     hashMap.Insert("PE", 125);
-    hashMap.Insert("CPSC", 120);
-    //12345678
-    // Количество CPSC
-    cout << "Значение 'BIOL' появляется в таблице " <<
-    hashMap.ContainsKey("BIOL") << " раз(а)" << endl;
+    hashMap.Insert("BIOL", 120);
+    string my="BIOL";
+    // Количество my
+    cout << "Значение "+my+" появляется в таблице " <<
+    hashMap.ContainsKey(my) << " раз(а)" << endl;
     
     // Поиск
-    iterDec it = hashMap.begin(hashMap.Hash("BIOL"));
+    iterDec it = hashMap.begin(hashMap.Hash(my));
     
     // Показывает 1-ое значение
-    cout << "1-ый элемент со значением 'BIOL': "
+    cout << "1-ый элемент со значением "+my+": "
     << it[0].value << endl;
-    cout << "Все элементы со значением 'BIOL': " << endl;
-    for (int x = 0; x < hashMap.BucketSize(hashMap.Hash("BIOL")); ++x)
+    cout << "Все элементы со значением "+my+":"<< endl;
+    for (int x = 0; x < hashMap.BucketSize(hashMap.Hash(my)); ++x)
     {
-        if (it[x].key == "BIOL")
+        if (it[x].key == my)
         {
             cout << "  Key-> " << it[x].key << "  Value-> " << it[x].value << endl;
         }
     }
     
-    // Удаляет первый CPSC
+    // Удаляет первый my
     cout << "Удаляем элемент  с " << it[0].value << " и " << it[0].key << endl;
-    hashMap.Remove("BIOL", it[0].value);
+        hashMap.Remove(my, it[0].value);
     
-    // Количество CPSC
-    cout << "Теперь значение BIOL повторяется " <<
-    hashMap.ContainsKey("BIOL") << " раз(а)"<< endl;
+    if (hashMap.BucketSize(hashMap.Hash(my))!= 0) {
+    // Количество my
+    cout << "Теперь значение "+my+" повторяется " <<
+        hashMap.ContainsKey(my) << " раз(а)"<< endl;
+        
+    }
     
     // Обновляем итератор до новой позиции
-    it = hashMap.begin(hashMap.Hash("BIOL"));
+    it = hashMap.begin(hashMap.Hash(my));
     
     // Показывает все элементы в таблице
     cout << "Все элементы входящие в таблицу: "<< endl;
